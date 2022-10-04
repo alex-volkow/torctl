@@ -7,6 +7,31 @@ for anonymizing entire system
 
 `pacman -S torctl`
 
+## Installation - Debian
+
+`sudo apt install tor`
+`sudo apt install git`
+
+Install GNU MAC changer. GNU MAC changer allows you to change your MAC address.
+`sudo apt install tor macchanger secure-delete`
+
+Clone the Torctl directory:
+`git clone https://github.com/alex-volkow/torctl && cd torctl`
+
+Move the contents of the "service" and "completion" folders. If you are using a regular Linux distribution, there are a few files you need to move. 
+`sudo mv service/* /etc/systemd/system/`
+`sudo mv bash-completion/torctl /usr/share/bash-completion/completions/torctl`
+
+Edit the input commands of the script. If you are using a regular Linux distribution, you need to edit the input commands of the script. Skip this step if you are using BlackArch.
+`sed -i 's/start_service iptables//' torctl`
+`sed -i 's/TOR_UID="tor"/TOR_UID="debian-tor"/' torctl`
+
+Move the Torctl script you just edited. After you finish editing the script, go ahead and enter the following command:
+`sudo mv torctl /usr/local/bin/torctl`
+
+Remove the Torctl script from the original folder.
+`cd .. && rm -rf torctl/`
+
 ## Usage
 
 ```
